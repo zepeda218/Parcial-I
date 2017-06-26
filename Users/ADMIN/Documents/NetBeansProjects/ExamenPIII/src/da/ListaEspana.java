@@ -97,11 +97,12 @@ public class ListaEspana {
 
     /**
      * <h3>convertTo</h3>
-     * @param posicion receives the players position
-     * converts the players position into a number so it can be easier to order the player
+     *
+     * @param posicion receives the players position converts the players
+     * position into a number so it can be easier to order the player
      * @return int the number of the position
      */
-    public int convertTo(String posicion) {   
+    public int convertTo(String posicion) {
         int pos = 0;
         switch (posicion) {
             case "Portero":
@@ -119,11 +120,12 @@ public class ListaEspana {
         }
         return pos;
     }
-    
 
     /**
      * <h4>positionSorting</h4>
-     * Sorts the list by players position: goalkeeper, deffense, midfield, forward
+     * Sorts the list by players position: goalkeeper, deffense, midfield,
+     * forward
+     *
      * @return boolean the result of the operation
      */
     public boolean positionSorting() {
@@ -137,8 +139,7 @@ public class ListaEspana {
             while (aux2 != null) {
 
                 //si el primer nodo es mayor que el segundo
-               if (convertTo(aux.getDato().getPosicion()) > convertTo(aux2.getDato().getPosicion()))
-           {
+                if (convertTo(aux.getDato().getPosicion()) > convertTo(aux2.getDato().getPosicion())) {
 
                     if (aux == cabeza) { //si se encuentra al principio
                         //los enlaces del primero se enlazan con el tercer nodo
@@ -194,24 +195,110 @@ public class ListaEspana {
     /**
      * <h5>associateMarks</h5>
      * associates the Espanish team players with their correspondant markers
+     *
+     * @param lista receives the Chilean team list
      * @return String the players with their respective markers
      */
-//    public String associateMarks (){
-//    ListaDoble ld = new ListaDoble ();
-//    NodoEspana aux = cabeza;
-//    String str = "";  
-//    
-//        while (!aux.getDato().getPosicion().equals("Defensa")) {
-//                    aux = aux.getSig();
-//                }
-//                //anade a la cadena el defensa que encuentre
-//                str = " " + aux.getDato().getNombre() + " " + aux.getDato().getApellido() +
-//                        " " ;
-//                aux = cabeza;
-//                str += "\n";
-//            
-//       
-//    return str;
-//    }
-//   
+    public String associateMarks(ListaDoble lista) {
+        NodoEspana aux = cabeza;
+        Nodo aux2 = lista.getCabeza();
+        String str = "";
+        int con = 0;
+        int con2 = 0;
+
+        while (aux.getSig() != null) {
+            if (aux.getDato().getPosicion().equals("Defensa")) {
+                con++;
+            }
+            aux = aux.getSig();
+        }
+
+        aux = cabeza;
+        while (con2 <= con) {
+
+            while (!aux.getDato().getPosicion().equals("Defensa")) {
+                aux = aux.getSig();
+            }
+            //anade a la cadena el defensa que encuentre
+            str += " " + aux.getDato().getNombre() + " " + aux.getDato().getApellido();
+
+            while (!aux2.getDato().getPosicion().equals("Delantero")) {
+                aux2 = aux2.getSig();
+            }
+
+            str += "-" + aux2.getDato().getNombre() + " " + aux2.getDato().getApellido() + "\n";
+            aux = aux.getSig();
+            aux2 = aux2.getSig();
+            con2++;
+        }
+        aux = cabeza;
+        aux2 = lista.getCabeza();
+      //  con = 0;
+      //  con2 = 0;
+        str += "\n";
+
+        while (aux.getSig() != null) {
+            if (aux.getDato().getPosicion().equals("Mediocampista")) {
+                con++;
+            }
+            aux = aux.getSig();
+        }
+
+        aux = cabeza;
+        while (con2 <= con) {
+
+            while (!aux.getDato().getPosicion().equals("Mediocampista")) {
+                aux = aux.getSig();
+            }
+            //anade a la cadena el defensa que encuentre
+            str += " " + aux.getDato().getNombre() + " " + aux.getDato().getApellido();
+
+            while (!aux2.getDato().getPosicion().equals("Mediocampista")) {
+                aux2 = aux2.getSig();
+            }
+
+            str += "-" + aux2.getDato().getNombre() + " " + aux2.getDato().getApellido() + "\n";
+
+            aux = aux.getSig();
+            aux2 = aux2.getSig();
+            con2++;
+        }
+
+        aux = cabeza;
+        aux2 = lista.getCabeza();
+        str += "\n";
+
+        
+           while (aux.getSig() != null) {
+            if (aux.getDato().getPosicion().equals("Delantero")) {
+                con++;
+            }
+            aux = aux.getSig();
+        }
+
+        aux = cabeza;
+        while (con2 <= con) {
+
+            while (!aux.getDato().getPosicion().equals("Delantero")) {
+                aux = aux.getSig();
+            }
+            //anade a la cadena el defensa que encuentre
+            str += " " + aux.getDato().getNombre() + " " + aux.getDato().getApellido();
+
+            while (!aux2.getDato().getPosicion().equals("Defensa")) {
+                aux2 = aux2.getSig();
+            }
+
+            str += "-" + aux2.getDato().getNombre() + " " + aux2.getDato().getApellido() + "\n";
+
+            aux = aux.getSig();
+            aux2 = aux2.getSig();
+            con2++;
+        }
+
+        str += "\n";
+        
+        return str;
+    }
+
 }

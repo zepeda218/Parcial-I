@@ -61,9 +61,10 @@ public class ExamenPIII {
         le.add("Jesus", "Navas", 24, "Delantero", true);
         le.add("Alvaro", "Arbeloa", 27, "Defensa", true);
 
-        le.positionSorting(); //Sorts the list by players position
-        System.out.println(le.toString()); //Prints the list
-
+  //      le.positionSorting(); //Sorts the list by players position
+  //      System.out.println(le.toString()); //Prints the list
+        System.out.println(le.associateMarks(ld));
+        
     }
 
 }
